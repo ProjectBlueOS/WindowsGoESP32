@@ -3,6 +3,8 @@ A windowing OS for the ESP32 with real time desktop streaming to your browser
 
 YOu can flash the all in one bin from this repository to any ESp32 (prefer VROOM 1 module) - 
 
+YouTube Video: https://www.youtube.com/watch?v=i1Q2DKtjzAk
+
 Requirements:
 -------------
 Board: Must have at least 4MB Flash

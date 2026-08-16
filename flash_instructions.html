@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WindowsGo &mdash; Flashing Instructions V1.0</title>
+<style>
+  :root {
+    --teal: #008080;
+    --teal-dark: #004c4c;
+    --w95-grey: #c0c0c0;
+    --w95-dark: #808080;
+    --w95-light: #ffffff;
+    --navy: #000080;
+    --text: #1a1a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background: #e8e8e8;
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .window {
+    max-width: 860px;
+    margin: 0 auto 24px;
+    background: var(--w95-grey);
+    border-top: 2px solid var(--w95-light);
+    border-left: 2px solid var(--w95-light);
+    border-right: 2px solid var(--w95-dark);
+    border-bottom: 2px solid var(--w95-dark);
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.35);
+  }
+  .titlebar {
+    background: var(--teal);
+    color: #fff;
+    padding: 6px 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+  }
+  .titlebar .title { text-shadow: 1px 1px 0 rgba(0,0,0,0.4); }
+  .titlebar .badge {
+    background: var(--teal-dark);
+    padding: 1px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+  }
+  .body {
+    background: #fdfdfd;
+    padding: 24px 28px;
+    border-top: 2px solid var(--w95-light);
+  }
+  h1 { font-size: 24px; color: var(--navy); margin-bottom: 6px; }
+  h2 {
+    font-size: 17px;
+    color: var(--teal);
+    margin: 22px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ddd;
+  }
+  p { margin-bottom: 10px; }
+  ul, ol { margin: 6px 0 12px 22px; }
+  li { margin-bottom: 6px; }
+  code {
+    background: #f1f1f1;
+    border: 1px solid #d5d5d5;
+    padding: 1px 6px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    border-radius: 3px;
+  }
+  pre {
+    background: #0f0f0f;
+    color: #d6f5d6;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    border-radius: 4px;
+    margin: 10px 0 14px;
+    line-height: 1.5;
+  }
+  pre code { background: none; border: none; padding: 0; color: inherit; }
+  .callout {
+    border: 1px solid #b8d4b8;
+    background: #f2faf2;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 14px 0;
+  }
+  .callout.warn {
+    border-color: #e0c080;
+    background: #fff8ec;
+  }
+  .callout strong { display: block; margin-bottom: 4px; }
+  .btn {
+    display: inline-block;
+    background: var(--w95-grey);
+    border-top: 2px solid var(--w95-light);
+    border-left: 2px solid var(--w95-light);
+    border-right: 2px solid var(--w95-dark);
+    border-bottom: 2px solid var(--w95-dark);
+    padding: 8px 18px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn:active {
+    border-top: 2px solid var(--w95-dark);
+    border-left: 2px solid var(--w95-dark);
+    border-right: 2px solid var(--w95-light);
+    border-bottom: 2px solid var(--w95-light);
+  }
+  .copy-wrap { display: flex; align-items: center; gap: 10px; margin: 6px 0 14px; }
+  .copy-wrap .btn { white-space: nowrap; }
+  .footer {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <span class="title">WindowsGo &mdash; Welcome</span>
+    <span class="badge">v1</span>
+  </div>
+  <div class="body">
+    <h1>What is WindowsGo?</h1>
+    <p>
+      WindowsGo is a tiny computer-in-a-board. It turns a small ESP32 microcontroller
+      into a full desktop experience &mdash; a classic Windows&nbsp;95-style environment
+      with a start menu, desktop icons, a live clock and apps that really work.
+    </p>
+    <p>
+      There's no screen on the board itself. Instead, the ESP32 broadcasts its own
+      private WiFi hotspot-like connection and streams the entire desktop straight to
+      your web browser. Open a page on your phone or laptop, and a retro desktop
+      appears instantly &mdash; like a little computer living inside your browser.
+      Everything runs on the board; your browser is just the window into it.
+    </p>
+    <p>
+      It's fast, it's fun, it's a tiny slice of computing history you can hold in
+      your hand &mdash; and you can have it running in about five minutes.
+    </p>
+
+    <h2>What you need</h2>
+    <ul>
+      <li>An <strong>ESP32 development board</strong> (the classic ESP32-WROOM-32 style)</li>
+      <li>A <strong>USB cable</strong> that can carry data (not a charge-only cable)</li>
+      <li>A computer with <strong>esptool</strong> installed (see Step 1)</li>
+      <li>A web browser (Chrome recommended)</li>
+    </ul>
+
+    <h2>Step 1 &mdash; Install the flashing tool</h2>
+    <p>Download and install <strong>esptool</strong> from the official
+      <a href="https://docs.espressif.com/projects/esptool/" target="_blank" rel="noopener">Espressif esptool page</a>.</p>
+
+    <h2>Step 2 &mdash; Connect your ESP32</h2>
+    <ol>
+      <li>Plug the ESP32 into your computer with the USB cable.</li>
+      <li>If the board has a <strong>driver</strong>, let it install automatically.</li>
+      <li>Find out which port it uses:
+        <ul>
+          <li><strong>Windows:</strong> check <em>Device Manager &rarr; Ports</em> &mdash; it shows as <code>COM3</code>, <code>COM4</code>, etc.</li>
+          <li><strong>macOS / Linux:</strong> it usually appears as <code>/dev/ttyUSB0</code> or <code>/dev/cu.usbserial-XXXX</code>.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>Step 3 &mdash; Flash the board</h2>
+    <p>
+      Keep the <code>esp32_WindowsGo_V1.bin</code> file in the same folder as your terminal
+      is open, then run this single command (replace <code>COM3</code> with your port):
+    </p>
+    <div class="copy-wrap">
+      <pre style="flex:1; margin:0;"><code>esptool --chip esp32 write-flash 0x0 esp32_WindowsGo_V1.bin</code></pre>
+      <span class="btn">Copy</span>
+    </div>
+    <p>
+      One file does everything &mdash; there is nothing else to flash.
+      You'll see a progress bar, then <em>"Hard resetting"</em>, which means it's done.
+    </p>
+
+    <div class="callout">
+      <strong>Trouble flashing? Erase first.</strong>
+      If the board has been used before and won't accept the write, erase it first:
+      <pre style="margin:8px 0 0;"><code>esptool --chip esp32 erase_flash</code></pre>
+      Then run the flash command above again.
+    </div>
+
+    <h2>Step 4 &mdash; Connect and enjoy</h2>
+    <ol>
+      <li>Power the ESP32 from any USB port.</li>
+      <li>It connects to the configured WiFi network. The board is set to connect to the
+        <strong>Mooo</strong> network &mdash; the password is <code>MooMoo1234!</code>.
+        Make sure that network is reachable.</li>
+      <li>Open a browser on any device on the same network and go to the board's IP (see below).</li>
+      <li>The desktop appears. Click around &mdash; the clock runs live, the apps respond, it's a working little PC.</li>
+    </ol>
+
+    <h2>How to find the IP address</h2>
+    <p>
+      Right after the board powers up it prints its address to the serial console, then
+      repeats it whenever it (re)connects. To read it:
+    </p>
+    <ol>
+      <li>Keep the ESP32 plugged into your computer over USB.</li>
+      <li>Open a serial monitor set to the board's COM port at <strong>115200 baud</strong>.
+        <ul>
+          <li>esptool doesn't have a monitor &mdash; use any free serial terminal
+            (e.g. <em>Arduino IDE Serial Monitor</em>, <em>PuTTY</em>, or
+            <code>screen /dev/ttyUSB0 115200</code> on macOS/Linux).</li>
+        </ul>
+      </li>
+      <li>Watch the log. The board prints a line like
+        <code>got ip: 192.168.1.42</code> (the numbers will differ for your network).</li>
+      <li>In the Winddows GO IP box, type <code>192.168.1.42</code> &mdash; use the IP you saw.</li>
+    </ol>
+    <div class="callout">
+      <strong>Tip</strong>
+      The IP can change when the board reconnects or the router restarts. Just read the
+      printed line again and use the new address. The browser address bar keeps the last
+      one you visited, which makes it easy to reconnect.
+    </div>
+
+    <div class="callout warn">
+      <strong>Notes</strong>
+      <ul style="margin:0;">
+        <li>One browser connection at a time &mdash; closing the tab and reopening connects again.</li>
+        <li>Use Chrome for the best experience.</li>
+        <li>If the screen seems blank, refresh the page.</li>
+        <li>Keep the board powered from a stable USB supply.</li>
+      </ul>
+    </div>
+
+    <h2>Quick reference</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#f1f1f1;">
+        <th style="text-align:left; padding:6px 8px; border:1px solid #ccc;">Task</th>
+        <th style="text-align:left; padding:6px 8px; border:1px solid #ccc;">Command</th>
+      </tr>
+      <tr>
+        <td style="padding:6px 8px; border:1px solid #ccc;">Flash</td>
+        <td style="padding:6px 8px; border:1px solid #ccc;"><code>esptool --chip esp32 write-flash 0x0 esp32_WindowsGo_V1.bin</code></td>
+      </tr>
+      <tr>
+        <td style="padding:6px 8px; border:1px solid #ccc;">Erase</td>
+        <td style="padding:6px 8px; border:1px solid #ccc;"><code>esptool --chip esp32 erase_flash</code></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<p class="footer">WindowsGo &middot; Enjoy your tiny desktop &middot; v1</p>
+
+</body>
+</html>
+
+</html>

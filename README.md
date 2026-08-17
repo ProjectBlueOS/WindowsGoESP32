@@ -21,4 +21,6 @@ Created by: Julian DeVante Aug 2026
 
 -Just added the fix in V1.1: This has the fix for File Manager to copy and paste files from the board to the network drive (Your shared computer folder)
 
+-UPdate V2.9 with lots of massive fixes - use this version 
+
 

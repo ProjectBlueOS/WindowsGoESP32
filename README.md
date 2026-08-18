@@ -19,10 +19,14 @@ I will add updated here if I am still around in the near future...also check out
 
 Created by: Julian DeVante Aug 2026
 
--Just added the fix in V1.1: This has the fix for File Manager to copy and paste files from the board to the network drive (Your shared computer folder)
-
--UPdate V2.9 with lots of massive fixes - 
-- Updated V 3.1 added Galaxian Game - use this version and version 2.9 WIndows Go Viewer
-- 
+CLeaned up this Repo and only placed the latest and best
+Windows Go V 3.3
+-BOard Master - IO and ADC visual and logging
+- Blue Write
+- Full File Manager
+- Arkenoid
+- Galiaian
+- etc
+- Let me know if any issues
 
 
